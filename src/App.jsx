@@ -8,7 +8,7 @@ function App() {
   function addTodo(todoTitle) {
     const newTodo = { id: Date.now(), title: todoTitle };
 
-    setTodoList((previos) => [newTodo, ...previos]);
+    setTodoList((previous) => [newTodo, ...previous]);
   }
   return (
     <div>
