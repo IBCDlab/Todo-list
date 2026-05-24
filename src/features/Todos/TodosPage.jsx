@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import TodoList from "./Todolist/Todolist.jsx";
+import TodoList from "./TodoList/TodoList.jsx";
 import TodoForm from "./TodoForm.jsx";
 
 export default function TodosPage({ token }) {
