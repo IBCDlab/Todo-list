@@ -22,4 +22,3 @@ export default function TodoList({ todoList, onCompleteTodo, onUpdateTodo }) {
     </>
   );
 }
-

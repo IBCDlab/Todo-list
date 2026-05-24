@@ -5,7 +5,7 @@ import TodoForm from "./TodoForm.jsx";
 
 export default function TodosPage({ token }) {
   const [todoList, setTodoList] = useState([]);
-  const [isTodoListLoading, setIsTodoListLoading] = useState("false");
+  const [isTodoListLoading, setIsTodoListLoading] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -71,7 +71,8 @@ export default function TodosPage({ token }) {
     }
   }
 
-  function completeTodo(id) {
+  async function completeTodo(id) {
+    const previousTodo = todoList.find((todo) => todo.id === id);
     const updatedTodoList = todoList.map((todo) => {
       if (todo.id === id) {
         return { ...todo, isCompleted: true };
@@ -79,9 +80,34 @@ export default function TodosPage({ token }) {
       return todo;
     });
     setTodoList(updatedTodoList);
+    try {
+      const response = await fetch(`/api/tasks/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": token,
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          isCompleted: true,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to complete task");
+      }
+    } catch (error) {
+      setTodoList((previous) =>
+        previous.map((todo) => (todo.id === id ? previousTodo : todo)),
+      );
+
+      setError(error.message);
+    }
   }
 
-  function updateTodo(editedTodo) {
+  async function updateTodo(editedTodo) {
+    const previousTodo = todoList.find((todo) => todo.id === editedTodo.id);
+
     const updatedTodos = todoList.map((todo) => {
       if (todo.id === editedTodo.id) {
         return { ...editedTodo };
@@ -91,6 +117,31 @@ export default function TodosPage({ token }) {
     });
 
     setTodoList(updatedTodos);
+    try {
+      const response = await fetch(`/api/tasks/${editedTodo.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          "X-CSRF-TOKEN": token,
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          title: editedTodo.title,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to update task");
+      }
+    } catch (error) {
+      setTodoList((previous) =>
+        previous.map((todo) =>
+          todo.id === editedTodo.id ? previousTodo : todo,
+        ),
+      );
+
+      setError(error.message);
+    }
   }
 
   return (
