@@ -23,7 +23,6 @@ export default function TodosPage({ token }) {
 
   const invalidateCache = useCallback(() => {
     setDataVersion((prev) => prev + 1);
-    console.log("Clearing memo cache after todo list change");
   }, []);
 
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function TodosPage({ token }) {
           paramsObject.find = debouncedFilterTerm;
         }
         const params = new URLSearchParams(paramsObject);
-        console.log(params.toString());
         const response = await fetch(`/api/tasks?${params}`, {
           headers: { "X-CSRF-TOKEN": token },
           credentials: "include",
@@ -117,7 +115,6 @@ export default function TodosPage({ token }) {
     });
     setTodoList(updatedTodoList);
     try {
-      console.log(originTodo);
       const response = await fetch(`/api/tasks/${id}`, {
         method: "PATCH",
         headers: {
