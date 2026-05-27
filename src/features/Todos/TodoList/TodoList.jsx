@@ -8,12 +8,14 @@ export default function TodoList({
   dataVersion,
 }) {
   const filteredTodoList = useMemo(() => {
+    console.log(`Recalculating filtered todos (v${dataVersion})`);
+
     return {
       version: dataVersion,
-
       todos: todoList.filter((todo) => !todo.isCompleted),
     };
   }, [todoList, dataVersion]);
+
   return (
     <>
       {filteredTodoList.todos.length === 0 ? (

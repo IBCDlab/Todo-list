@@ -12,8 +12,8 @@ export default function SortBy({
         value={sortBy}
         onChange={(event) => onSortByChange(event.target.value)}
       >
-        <option>Creation Date</option>
-        <option>Title</option>
+        <option value="creationDate">Creation Date</option>
+        <option value="title">Title</option>
       </select>
 
       <label htmlFor="sortDirection">Order</label>
@@ -23,8 +23,8 @@ export default function SortBy({
         value={sortDirection}
         onChange={(event) => onSortDirectionChange(event.target.value)}
       >
-        <option>Descending</option>
-        <option>Ascending</option>
+        <option value="desc">Descending</option>
+        <option value="asc">Ascending</option>
       </select>
     </div>
   );
