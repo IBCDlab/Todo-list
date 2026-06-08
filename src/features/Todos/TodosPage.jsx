@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useCallback } from "react";
 import { useReducer } from "react";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 
 import {
   todoReducer,
@@ -15,7 +16,8 @@ import FilterInput from "../../shared/FilterInput.jsx";
 
 import useDebounce from "../../utils/useDebounce.js";
 
-export default function TodosPage({ token }) {
+export default function TodosPage() {
+  const { token } = useAuth();
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
 
   const {
@@ -156,12 +158,6 @@ export default function TodosPage({ token }) {
 
   async function completeTodo(id) {
     const originTodo = todoList.find((todo) => todo.id === id);
-    const updatedTodoList = todoList.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, isCompleted: true };
-      }
-      return todo;
-    });
 
     dispatch({
       type: TODO_ACTIONS.COMPLETE_TODO_START,
@@ -205,14 +201,6 @@ export default function TodosPage({ token }) {
 
   async function updateTodo(editedTodo) {
     const originTodo = todoList.find((todo) => todo.id === editedTodo.id);
-
-    const updatedTodos = todoList.map((todo) => {
-      if (todo.id === editedTodo.id) {
-        return { ...editedTodo };
-      }
-
-      return todo;
-    });
 
     dispatch({
       type: TODO_ACTIONS.UPDATE_TODO_START,
