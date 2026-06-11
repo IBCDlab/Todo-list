@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router";
-import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
 
 export default function LoginPage() {
@@ -24,16 +22,17 @@ export default function LoginPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+    
+    setAuthError("");
     setIsLoggingOn(true);
 
     try {
       const result = await login(email, password);
       if (!result.success) {
-        setAuthError(result.error);
+        setAuthError("Invalid email or password.");
       }
-    } catch (error) {
-      setAuthError(`Error: ${error.name} | ${error.message}`);
+    } catch {
+      setAuthError("Unable to log in. Please try again.");
     } finally {
       setIsLoggingOn(false);
     }
