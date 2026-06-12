@@ -1,23 +1,38 @@
-import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext.jsx";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { useAuth } from "../contexts/AuthContext";
 
-export default function Logon() {
-  const { login } = useAuth();
+export default function LoginPage() {
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [authError, setAuthError] = useState("");
   const [isLoggingOn, setIsLoggingOn] = useState(false);
+
+  const from = location.state?.from?.pathname || "/todos";
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
+
   async function handleSubmit(event) {
     event.preventDefault();
+    
+    setAuthError("");
     setIsLoggingOn(true);
 
     try {
       const result = await login(email, password);
       if (!result.success) {
-        setAuthError(result.error);
+        setAuthError("Invalid email or password.");
       }
-    } catch (error) {
-      setAuthError(`Error: ${error.name} | ${error.message}`);
+    } catch {
+      setAuthError("Unable to log in. Please try again.");
     } finally {
       setIsLoggingOn(false);
     }
