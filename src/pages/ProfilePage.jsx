@@ -68,9 +68,9 @@ export default function ProfilePage() {
       <h2>Todo Statistics</h2>
 
       {loading ? (
-        <p>Loading statistics...</p>
+        <p className="loading">Loading statistics...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error">{error}</p>
       ) : (
         <>
           <p>Total todos: {totalTodos}</p>

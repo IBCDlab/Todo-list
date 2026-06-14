@@ -45,7 +45,7 @@ export default function TodoList({
   };
 
   return filteredTodoList.todos.length === 0 ? (
-    <p>{getEmptyMessage()}</p>
+    <p className={styles.empty}>{getEmptyMessage()}</p>
   ) : (
     <ul className={styles.list}>
       {filteredTodoList.todos.map((todo) => (

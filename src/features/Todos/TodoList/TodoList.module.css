@@ -2,3 +2,9 @@
   list-style: none;
   padding-left: 24px;
 }
+
+.empty {
+  color: #64748b;
+  font-style: italic;
+  margin-top: 16px;
+}
