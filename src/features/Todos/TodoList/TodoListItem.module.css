@@ -18,3 +18,9 @@
   margin-left: 8px;
   border: 1px solid #cbd5e1;
 }
+
+.item input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}

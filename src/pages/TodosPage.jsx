@@ -2,8 +2,7 @@ import { useEffect } from "react";
 import { useCallback } from "react";
 import { useReducer } from "react";
 import { useAuth } from "../contexts/AuthContext.jsx";
-import { useSearchParams } from 'react-router';
-
+import { useSearchParams } from "react-router";
 
 import {
   todoReducer,
@@ -15,7 +14,7 @@ import TodoList from "../features/Todos/TodoList/TodoList.jsx";
 import TodoForm from "../features/Todos/TodoForm.jsx";
 import SortBy from "../shared/SortBy.jsx";
 import FilterInput from "../shared/FilterInput.jsx";
-import StatusFilter from '../shared/StatusFilter';
+import StatusFilter from "../shared/StatusFilter";
 
 import useDebounce from "../utils/useDebounce.js";
 
@@ -24,7 +23,7 @@ export default function TodosPage() {
   const [searchParams] = useSearchParams();
   const [state, dispatch] = useReducer(todoReducer, initialTodoState);
 
-  const statusFilter = searchParams.get('status') || 'all';
+  const statusFilter = searchParams.get("status") || "all";
 
   const {
     todoList,
@@ -253,7 +252,7 @@ export default function TodosPage() {
     <div>
       {error ? (
         <div>
-          <p>{error}</p>
+          <p className="error">{error}</p>
           <button
             type="button"
             onClick={() =>
@@ -269,7 +268,7 @@ export default function TodosPage() {
 
       {filterError ? (
         <div>
-          <p>{filterError}</p>
+          <p className="error">{filterError}</p>
 
           <button
             type="button"
@@ -295,7 +294,7 @@ export default function TodosPage() {
         </div>
       ) : null}
 
-      {isTodoListLoading ? <p>Loading todos...</p> : null}
+      {isTodoListLoading ? <p className="loading">Loading todos...</p> : null}
       <h2>Todos Page</h2>
       <SortBy
         sortBy={sortBy}
