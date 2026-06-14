@@ -1,3 +1,5 @@
+import styles from "./Logoff.module.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext.jsx";
@@ -19,7 +21,7 @@ export default function Logoff() {
   return (
     <>
       {error && <p>{error}</p>}
-      <button type="button" onClick={handleLogoff}>
+      <button className={styles.button} type="button" onClick={handleLogoff}>
         Log Off
       </button>
     </>

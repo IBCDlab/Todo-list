@@ -1,3 +1,5 @@
+import styles from "./LoginPage.module.css";
+
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useAuth } from "../contexts/AuthContext";
@@ -22,7 +24,7 @@ export default function LoginPage() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    
+
     setAuthError("");
     setIsLoggingOn(true);
 
@@ -39,7 +41,7 @@ export default function LoginPage() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       {authError && <p>{authError}</p>}
 
       <label htmlFor="email">Email</label>
@@ -60,7 +62,7 @@ export default function LoginPage() {
         required
       />
 
-      <button type="submit" disabled={isLoggingOn}>
+      <button className={styles.button} type="submit" disabled={isLoggingOn}>
         {isLoggingOn ? "Logging in..." : "Log On"}
       </button>
     </form>

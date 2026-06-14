@@ -296,7 +296,7 @@ export default function TodosPage() {
       ) : null}
 
       {isTodoListLoading ? <p>Loading todos...</p> : null}
-      <h1>Todos Page</h1>
+      <h2>Todos Page</h2>
       <SortBy
         sortBy={sortBy}
         sortDirection={sortDirection}

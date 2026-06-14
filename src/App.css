@@ -1,0 +1,54 @@
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 48px;
+}
+
+h1 {
+  font-size: 36px;
+  color: #1e3a8a;
+  margin-bottom: 18px;
+}
+
+h2 {
+  font-size: 26px;
+  color: #334155;
+  margin-top: 28px;
+  margin-bottom: 20px;
+}
+
+select {
+  padding: 4px;
+  border-radius: 4px;
+}
+
+div {
+  margin-bottom: 8px;
+}
+
+.error {
+  color: #b91c1c;
+  margin-bottom: 12px;
+}
+
+.loading {
+  color: #475569;
+  font-style: italic;
+}
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .app {
+    padding: 32px;
+  }
+}
+
+/* Phone */
+
+@media (max-width: 480px) {
+  .app {
+    padding: 20px;
+  }
+}
+

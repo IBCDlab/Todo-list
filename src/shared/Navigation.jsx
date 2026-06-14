@@ -20,8 +20,9 @@ export default function Navigation() {
         style={{
           listStyle: "none",
           display: "flex",
-          gap: "1rem",
+          gap: "2rem",
           padding: 0,
+          fontSize: "20px",
         }}
       >
         <li>

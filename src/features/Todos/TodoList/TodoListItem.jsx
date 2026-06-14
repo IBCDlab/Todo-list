@@ -1,3 +1,5 @@
+import styles from "./TodoListItem.module.css";
+
 import { useState } from "react";
 import TextInputWithLabel from "../../../shared/TextInputWithLabel";
 import { isValidTodoTitle } from "../../../utils/todoValidation";
@@ -31,7 +33,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   }
 
   return (
-    <li>
+    <li className={styles.item}>
       <form onSubmit={handleUpdate}>
         {isEditing ? (
           <>
@@ -41,10 +43,15 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               value={workingTitle}
               onChange={handleEdit}
             />
-            <button type="button" onClick={handleCancel}>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
             <button
+              className={styles.button}
               type="button"
               onClick={handleUpdate}
               disabled={!isValidTodoTitle(workingTitle)}
@@ -63,7 +70,12 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               />
             </label>
 
-            <span onClick={() => setIsEditing(true)}>{todo.title}</span>
+            <span
+              className={todo.isCompleted ? styles.completed : ""}
+              onClick={() => setIsEditing(true)}
+            >
+              {todo.title}
+            </span>
           </>
         )}
       </form>
