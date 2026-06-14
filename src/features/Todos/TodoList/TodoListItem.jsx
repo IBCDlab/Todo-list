@@ -1,10 +1,11 @@
 import styles from "./TodoListItem.module.css";
 
 import { useState } from "react";
+import DOMPurify from "dompurify";
 import TextInputWithLabel from "../../../shared/TextInputWithLabel";
 import { isValidTodoTitle } from "../../../utils/todoValidation";
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
+export default function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [workingTitle, setWorkingTitle] = useState(todo.title);
 
@@ -23,6 +24,15 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     }
 
     event.preventDefault();
+
+    const cleanedTodoTitle = DOMPurify.sanitize(workingTitle.trim(), {
+      ALLOWED_TAGS: [],
+      ALLOWED_ATTR: [],
+    });
+
+    if (!cleanedTodoTitle) {
+      return;
+    }
 
     onUpdateTodo({
       ...todo,
@@ -82,5 +92,3 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
     </li>
   );
 }
-
-export default TodoListItem;

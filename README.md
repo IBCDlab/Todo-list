@@ -8,6 +8,12 @@ Users can add tasks, edit them, mark them as completed, search, sort, and filter
 
 Users must log in before they can view and manage their todos.
 
+## Security Features
+
+- Input validation
+- DOMPurify sanitization for creating and updating todos
+- Protected routes for authenticated users
+
 ## Technologies Used
 
 - React
@@ -36,6 +42,10 @@ cd Todo-list
 npm install
 ```
 
+## Environment Setup
+
+No environment variables are required for local development.
+
 ## Run
 
 ```
@@ -43,6 +53,34 @@ npm run dev
 ```
 
 Then open the local URL shown in the terminal.
+
+
+## Available Scripts
+
+### Development Server
+
+```
+npm run dev
+```
+
+Starts the development server.
+
+### Production Build
+
+```
+npm run build
+```
+
+Builds the application for production.
+
+### Preview Production Build
+
+```
+npm run preview
+```
+
+Runs a local preview of the production build.
+
 
 ## What I Learned
 
@@ -100,7 +138,7 @@ Created as part of the Code the Dream React course.
 
 ## License
 
-This project is for educational purposes.
+This project is licensed under the MIT License.
 
 ## Contact
 
