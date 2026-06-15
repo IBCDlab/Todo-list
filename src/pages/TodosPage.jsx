@@ -63,6 +63,14 @@ export default function TodosPage() {
           sortBy,
           sortDirection,
         };
+        if (statusFilter === "completed") {
+          paramsObject.isCompleted = true;
+        }
+
+        if (statusFilter === "active") {
+          paramsObject.isCompleted = false;
+        }
+
         if (debouncedFilterTerm) {
           paramsObject.find = debouncedFilterTerm;
         }
@@ -109,7 +117,7 @@ export default function TodosPage() {
       }
     }
     fetchTodos();
-  }, [token, sortBy, sortDirection, debouncedFilterTerm]);
+  }, [token, sortBy, sortDirection, debouncedFilterTerm, statusFilter]);
 
   async function addTodo(todoTitle) {
     const newTodo = {

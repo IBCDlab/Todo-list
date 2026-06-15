@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
         const data = await response.json();
         const todos = data.tasks;
-
+        
         const total = todos.length;
         const completed = todos.filter((todo) => todo.isCompleted).length;
         const active = total - completed;
