@@ -10,13 +10,13 @@ export default function Navigation() {
     <nav>
       <ul className={styles.navList}>
         <li>
-          <NavLink to="/about" style={navLinkClass}>
+          <NavLink to="/about" className={navLinkClass}>
             About
           </NavLink>
         </li>
         {!isAuthenticated ? (
           <li>
-            <NavLink to="/login" style={navLinkClass}>
+            <NavLink to="/login" className={navLinkClass}>
               Login
             </NavLink>
           </li>
@@ -24,13 +24,13 @@ export default function Navigation() {
         {isAuthenticated ? (
           <>
             <li>
-              <NavLink to="/todos" style={navLinkClass}>
+              <NavLink to="/todos" className={navLinkClass}>
                 Todos
               </NavLink>
             </li>
 
             <li>
-              <NavLink to="/profile" style={navLinkClass}>
+              <NavLink to="/profile" className={navLinkClass}>
                 Profile
               </NavLink>
             </li>
