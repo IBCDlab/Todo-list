@@ -34,7 +34,7 @@ export default function ProfilePage() {
 
         const data = await response.json();
         const todos = data.tasks;
-
+        
         const total = todos.length;
         const completed = todos.filter((todo) => todo.isCompleted).length;
         const active = total - completed;
@@ -68,9 +68,9 @@ export default function ProfilePage() {
       <h2>Todo Statistics</h2>
 
       {loading ? (
-        <p>Loading statistics...</p>
+        <p className="loading">Loading statistics...</p>
       ) : error ? (
-        <p>{error}</p>
+        <p className="error">{error}</p>
       ) : (
         <>
           <p>Total todos: {totalTodos}</p>

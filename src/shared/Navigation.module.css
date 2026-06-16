@@ -1,0 +1,12 @@
+.navList {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  padding: 0;
+  font-size: 20px;
+}
+
+.activeLink {
+  font-weight: bold;
+  text-decoration: underline;
+}

@@ -1,8 +1,11 @@
+import styles from "./TodoListItem.module.css";
+
 import { useState } from "react";
+import DOMPurify from "dompurify";
 import TextInputWithLabel from "../../../shared/TextInputWithLabel";
 import { isValidTodoTitle } from "../../../utils/todoValidation";
 
-function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
+export default function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   const [isEditing, setIsEditing] = useState(false);
   const [workingTitle, setWorkingTitle] = useState(todo.title);
 
@@ -22,6 +25,15 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
 
     event.preventDefault();
 
+    const cleanedTodoTitle = DOMPurify.sanitize(workingTitle.trim(), {
+      ALLOWED_TAGS: [],
+      ALLOWED_ATTR: [],
+    });
+
+    if (!cleanedTodoTitle) {
+      return;
+    }
+
     onUpdateTodo({
       ...todo,
       title: workingTitle,
@@ -31,7 +43,7 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
   }
 
   return (
-    <li>
+    <li className={styles.item}>
       <form onSubmit={handleUpdate}>
         {isEditing ? (
           <>
@@ -41,10 +53,15 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               value={workingTitle}
               onChange={handleEdit}
             />
-            <button type="button" onClick={handleCancel}>
+            <button
+              className={styles.button}
+              type="button"
+              onClick={handleCancel}
+            >
               Cancel
             </button>
             <button
+              className={styles.button}
               type="button"
               onClick={handleUpdate}
               disabled={!isValidTodoTitle(workingTitle)}
@@ -63,12 +80,16 @@ function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               />
             </label>
 
-            <span onClick={() => setIsEditing(true)}>{todo.title}</span>
+            <button
+              type="button"
+              className={`${styles.titleButton} ${todo.isCompleted ? styles.completed : ""}`}
+              onClick={() => setIsEditing(true)}
+            >
+              {todo.title}
+            </button>
           </>
         )}
       </form>
     </li>
   );
 }
-
-export default TodoListItem;
