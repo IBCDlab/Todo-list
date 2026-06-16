@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://ctd-learns-node-l42tx.ondigitalocean.app/api/$1"
+    }
+  ]
+}
