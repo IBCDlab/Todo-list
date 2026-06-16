@@ -8,6 +8,10 @@ Users can add tasks, edit them, mark them as completed, search, sort, and filter
 
 Users must log in before they can view and manage their todos.
 
+## 🚀 Live Demo
+
+[View Live Application](https://todo-list-3qodspdzk-ibcdlabs-projects.vercel.app)
+
 ## Security Features
 
 - Input validation
