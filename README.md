@@ -10,7 +10,7 @@ Users must log in before they can view and manage their todos.
 
 ## 🚀 Live Demo
 
-[View Live Application](https://todo-list-3qodspdzk-ibcdlabs-projects.vercel.app)
+[View Live Application](https://todo-list-beta-navy.vercel.app)
 
 ## Security Features
 
