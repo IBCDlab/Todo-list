@@ -80,12 +80,13 @@ export default function TodoListItem({ todo, onCompleteTodo, onUpdateTodo }) {
               />
             </label>
 
-            <span
-              className={todo.isCompleted ? styles.completed : ""}
+            <button
+              type="button"
+              className={`${styles.titleButton} ${todo.isCompleted ? styles.completed : ""}`}
               onClick={() => setIsEditing(true)}
             >
               {todo.title}
-            </span>
+            </button>
           </>
         )}
       </form>

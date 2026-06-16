@@ -3,10 +3,9 @@
   padding: 4px 0;
 }
 
-.item span {
+.titleButton {
   margin-left: 8px;
 }
-
 .completed {
   text-decoration: line-through;
   color: #64748b;
